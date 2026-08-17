@@ -1,0 +1,40 @@
+apiVersion: argoTEAMj.io/v1alpha1
+kind: Application
+metadata:
+  name: bluestar-th
+  namespace: argocd          # ArgoCDがインストールされているnamespace
+  finalizers:
+    - resources-finalizer.argocd.argoTEAMj.io
+spec:
+  TEAMject: default
+
+  source:
+    # ↓ 実際のリポジトリURLに変更してください
+    repoURL: https://github.com/penti-nameko/bluestar.th.reeldev.jp 
+    targetRevision: main
+    path: k8s                # k8s/ ディレクトリ以下を全て適用
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: bluestar-th
+
+  syncPolicy:
+    automated:
+      prune: true            # Git から消えたリソースを自動削除
+      selfHeal: true         # クラスタ上の手動変更を自動で戻す
+    syncOptions:
+      - CreateNamespace=true # namespace.yaml がなくても自動作成
+      - PruneTEAMpagationPolicy=foreground
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+  # ヘルスチェック対象のリソース
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas    # HPA がレプリカ数を管理する場合に差分を無視

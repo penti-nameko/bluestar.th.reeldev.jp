@@ -1,0 +1,36 @@
+.footer {
+  background: var(--black);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.copy {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: rgba(107, 107, 123, 0.5);
+}
+
+@media (max-width: 900px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 24px;
+  }
+}

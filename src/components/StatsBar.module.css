@@ -1,0 +1,49 @@
+.bar {
+  background: rgba(200, 168, 75, 0.06);
+  border-top: 1px solid rgba(200, 168, 75, 0.1);
+  border-bottom: 1px solid rgba(200, 168, 75, 0.1);
+  padding: 40px 0;
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.item {
+  text-align: center;
+}
+
+.num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.unit {
+  font-size: 28px;
+  color: var(--gold);
+}
+
+.label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--mid);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    gap: 40px;
+    padding: 0 24px;
+  }
+}

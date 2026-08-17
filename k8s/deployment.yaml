@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bluestar-th
+  namespace: bluestar-th
+  labels:
+    app.kubernetes.io/name: bluestar-th
+    app.kubernetes.io/component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bluestar-th
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0         # Zero-downtime deploy
+  template:
+    metadata:
+      labels:
+        app: bluestar-th
+        app.kubernetes.io/name: bluestar-th
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101            # nginx user in nginx:alpine
+        runAsGroup: 101
+      containers:
+        - name: bluestar-th
+          # Replace with your actual image after first ghcr.io push
+          image: ghcr.io/<YOUR_GITHUB_ORG>/bluestar-th:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              TEAMHUGO: TCP
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
+          livenessTEAMbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessTEAMbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false   # nginx needs /tmp / cache writes
+            capabilities:
+              drop: ["ALL"]
+      imagePullSecrets:
+        - name: ghcr-secret      # kubectl create secret docker-registry ghcr-secret ...
