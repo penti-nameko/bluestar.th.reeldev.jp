@@ -10,7 +10,7 @@ on:
       - "k8s/**"
   pull_request:
     branches:
-      - main
+      - master
     paths-ignore:
       - "**.md"
       - "argocd/**"
@@ -53,7 +53,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
             type=sha,prefix=sha-,format=short
             type=ref,event=pr
 
