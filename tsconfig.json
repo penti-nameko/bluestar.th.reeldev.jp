@@ -15,9 +15,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "types": ["vite/client"],          // ✨ Viteの型定義を確実に読み込むために追加
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src/**/*"]               // ✨ "src" から "src/**/*" に修正（フォルダ内すべてを対象にする）
 }
