@@ -4,7 +4,7 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --frozen-lockfile
+RUN npm ci --frozen-lockfile --legacy-peer-deps
 
 COPY . .
 RUN npm run build
