@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.1",
-    "@types/teamp-types": "^15.7.15",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^9.9.0",
