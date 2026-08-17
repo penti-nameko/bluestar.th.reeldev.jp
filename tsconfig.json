@@ -15,7 +15,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["vite/client"],          // ✨ Viteの型定義を確実に読み込むために追加
+    "types": ["vite/client", "node"],
     "paths": {
       "@/*": ["./src/*"]
     }
