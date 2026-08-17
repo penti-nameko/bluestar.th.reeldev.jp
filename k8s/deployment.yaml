@@ -42,13 +42,13 @@ spec:
             limits:
               cpu: "200m"
               memory: "128Mi"
-          livenessTEAMbe:
+          livenessProbe:
             httpGet:
               path: /healthz
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 10
-          readinessTEAMbe:
+          readinessProbe:
             httpGet:
               path: /healthz
               port: 8080
