@@ -7,6 +7,8 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # cert-manager を使う場合はコメントアウトを外す
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"  
 spec:
   ingressClassName: nginx
   tls:
