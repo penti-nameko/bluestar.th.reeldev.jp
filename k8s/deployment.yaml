@@ -30,11 +30,11 @@ spec:
       containers:
         - name: bluestar-th
           # Replace with your actual image after first ghcr.io push
-          image: ghcr.io/<YOUR_GITHUB_ORG>/bluestar-th:latest
+          image: ghcr.io/penti-nameko/bluestar.th.reeldev.jp:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-              TEAMHUGO: TCP
+              protocol: TCP
           resources:
             requests:
               cpu: "50m"
